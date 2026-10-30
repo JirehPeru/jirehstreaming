@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jireh Streaming Perú - Netflix, Disney+, Spotify Premium y más. Precios accesibles desde S/8. Pago por Yape y Plin. Soporte 24/7">
+    <meta name="description" content="Jireh Streaming Perú - Netflix, Disney+, Spotify Premium y más. Precios accesibles desde S/3. Pago por Yape y Plin. Soporte 24/7">
     <meta name="keywords" content="Netflix Perú, Disney Plus barato, Spotify Premium, streaming Perú, cuentas premium, HBO Max, Canva Pro">
     <meta name="author" content="Jireh Streaming">
     <title>Jireh Streaming | Catálogo Oficial Perú</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▶️</text></svg>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #FF8C00;
@@ -20,11 +20,22 @@
             --text: #1a1a1a;
             --text-secondary: #6b7280;
             --whatsapp: #25d366;
-            --accent: #FFB347;
             --border: #e5e7eb;
+            --nav-bg: rgba(255, 255, 255, 0.96);
             --gradient: linear-gradient(135deg, #FF8C00 0%, #FF1493 100%);
-            --shadow: 0 4px 20px rgba(255, 140, 0, 0.15);
-            --shadow-hover: 0 8px 30px rgba(255, 140, 0, 0.25);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 10px 30px rgba(255, 140, 0, 0.22);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f1117;
+            --card: #181b23;
+            --card-hover: #1f2430;
+            --text: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --border: #2a2f3d;
+            --nav-bg: rgba(15, 17, 23, 0.95);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
         }
 
         * {
@@ -47,16 +58,42 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Botón Modo Oscuro */
+        .theme-toggle {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            z-index: 1001;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            transform: scale(1.08);
         }
 
         header {
-            background: #ffffff;
-            padding: 50px 20px 40px;
+            background: var(--bg);
+            padding: 45px 20px 30px;
             text-align: center;
             border-bottom: 3px solid;
             border-image: var(--gradient) 1;
             position: relative;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .logo-container {
@@ -65,9 +102,9 @@
         }
 
         .logo-image {
-            max-width: 200px;
+            max-width: 190px;
             height: auto;
-            margin: 0 auto 20px;
+            margin: 0 auto 14px;
             display: block;
             filter: drop-shadow(0 4px 15px rgba(255, 140, 0, 0.2));
             animation: logoFloat 3s ease-in-out infinite;
@@ -75,36 +112,56 @@
 
         @keyframes logoFloat {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .logo-container h1 {
-            font-size: 2.8rem;
-            margin: 0 0 10px 0;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
+            50% { transform: translateY(-6px); }
         }
 
         .logo-container p {
             color: var(--text-secondary);
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
         }
 
+        /* Barra de Confianza */
+        .trust-bar {
+            max-width: 900px;
+            margin: 20px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .trust-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .trust-item i {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1rem;
+        }
+
+        /* Navegación */
         .category-nav {
             position: sticky;
             top: 0;
             z-index: 900;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(6px);
+            background: var(--nav-bg);
+            backdrop-filter: blur(8px);
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             padding: 12px 0;
+            border-bottom: 1px solid var(--border);
         }
 
         .category-nav-inner {
@@ -146,6 +203,7 @@
             box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
         }
 
+        /* Buscador */
         .search-wrap {
             position: relative;
             max-width: 1200px;
@@ -153,7 +211,7 @@
             padding: 0 20px;
         }
 
-        .search-wrap i {
+        .search-wrap .search-icon {
             position: absolute;
             left: 38px;
             top: 50%;
@@ -164,13 +222,13 @@
 
         .search-input {
             width: 100%;
-            padding: 15px 20px 15px 48px;
+            padding: 15px 45px 15px 48px;
             border-radius: 14px;
             border: 2px solid var(--border);
             font-family: inherit;
             font-size: 0.95rem;
             color: var(--text);
-            background: #fff;
+            background: var(--card);
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -178,6 +236,23 @@
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.12);
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 34px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .clear-search:hover {
+            color: var(--primary);
         }
 
         .no-results {
@@ -190,7 +265,7 @@
         .container {
             max-width: 1200px;
             margin: auto;
-            padding: 20px 20px 40px;
+            padding: 10px 20px 40px;
         }
 
         .cat-section {
@@ -201,15 +276,15 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin: 50px 0 25px;
-            font-size: 1.4rem;
+            margin: 45px 0 22px;
+            font-size: 1.35rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
-            padding-left: 8px;
+            padding-left: 12px;
             position: relative;
         }
 
@@ -234,20 +309,24 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+            gap: 18px;
             margin-bottom: 30px;
         }
 
+        /* Tarjetas */
         .card {
             background: var(--card);
             border: 2px solid var(--border);
             border-radius: 16px;
-            padding: 20px;
+            padding: 18px 16px;
             text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card::before {
@@ -256,10 +335,11 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: var(--gradient);
-            transform: scaleX(0);
+            height: 4px;
+            background: var(--brand-color, var(--gradient));
+            transform: scaleX(0.35);
             transition: transform 0.3s ease;
+            border-radius: 2px;
         }
 
         .card:hover::before {
@@ -267,45 +347,53 @@
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             background: var(--card-hover);
             border-color: var(--primary);
             box-shadow: var(--shadow-hover);
         }
 
-        .badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--gradient);
-            color: white;
-            padding: 4px 10px;
+        .card-icon {
+            width: 46px;
+            height: 46px;
             border-radius: 12px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
-            animation: pulse 2s infinite;
+            margin: 4px auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.45rem;
+            color: #fff;
+            background: var(--brand-color, var(--gradient));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gradient);
+            color: white;
+            padding: 3px 9px;
+            border-radius: 10px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 8px rgba(255, 140, 0, 0.3);
         }
 
         .card h3 {
-            font-size: 1.1rem;
-            margin: 15px 0 8px;
+            font-size: 1.02rem;
+            margin: 6px 0 4px;
             font-weight: 700;
             color: var(--text);
         }
 
         .card p {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text-secondary);
-            margin-bottom: 15px;
-            min-height: 40px;
+            margin-bottom: 12px;
+            min-height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -313,14 +401,14 @@
 
         .price-box {
             background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 20, 147, 0.1) 100%);
-            padding: 12px;
+            padding: 10px;
             border-radius: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border: 1px solid rgba(255, 140, 0, 0.2);
         }
 
         .price-value {
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             font-weight: 800;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -332,57 +420,108 @@
             background: var(--whatsapp);
             color: #fff;
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 11px 16px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             font-weight: 700;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            transition: all 0.25s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
         }
 
         .btn-buy:hover {
             background: #20bd5a;
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            transform: scale(1.03);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
         }
 
-        .btn-buy i {
-            font-size: 1.1rem;
+        /* Sección de Preguntas Frecuentes (FAQ) */
+        .faq-section {
+            max-width: 850px;
+            margin: 50px auto 10px;
         }
 
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text);
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .faq-item[open] summary::after {
+            content: '−';
+        }
+
+        .faq-item p {
+            padding: 0 20px 16px;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
         footer {
-            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            background: var(--card);
             padding: 40px 20px;
             text-align: center;
-            margin-top: 60px;
+            margin-top: 50px;
             border-top: 3px solid;
             border-image: var(--gradient) 1;
         }
 
+        .payment-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
         .payment-pill {
             background: var(--gradient);
-            padding: 12px 28px;
+            padding: 10px 22px;
             border-radius: 25px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: white;
-            box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.25);
         }
 
         footer p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 15px;
+            font-size: 0.88rem;
+            margin-top: 10px;
         }
 
         .floating-ws {
@@ -390,89 +529,83 @@
             bottom: 25px;
             right: 25px;
             background: var(--whatsapp);
-            width: 65px;
-            height: 65px;
+            width: 62px;
+            height: 62px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 30px;
             color: #fff;
             z-index: 1000;
             text-decoration: none;
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
             transition: all 0.3s ease;
-            animation: bounce 2s infinite;
+            animation: bounce 2.5s infinite;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
         .floating-ws:hover {
-            transform: scale(1.15);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+            transform: scale(1.12);
         }
 
         @media (max-width: 768px) {
+            .trust-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
             .grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                gap: 14px;
             }
-
-            .logo-container h1 {
-                font-size: 2rem;
-            }
-
             .section-title {
                 font-size: 1.1rem;
-                margin: 35px 0 20px;
+                margin: 35px 0 18px;
             }
-
             .card {
-                padding: 15px;
+                padding: 14px 12px;
             }
-
             .card h3 {
-                font-size: 0.95rem;
+                font-size: 0.92rem;
             }
-
             .price-value {
-                font-size: 1.3rem;
+                font-size: 1.28rem;
             }
         }
 
         @media (max-width: 480px) {
             .logo-image {
-                max-width: 150px;
+                max-width: 145px;
             }
-
-            .logo-container h1 {
-                font-size: 1.6rem;
-                letter-spacing: 1px;
-            }
-
-            .logo-container p {
-                font-size: 0.85rem;
-            }
-
             .floating-ws {
-                width: 55px;
-                height: 55px;
+                width: 54px;
+                height: 54px;
                 font-size: 26px;
-                bottom: 20px;
-                right: 20px;
+                bottom: 18px;
+                right: 18px;
             }
         }
     </style>
 </head>
 <body>
 
+<button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+    <i class="fas fa-moon"></i>
+</button>
+
 <header>
     <div class="logo-container">
         <img src="logo.png" alt="Jireh Streaming Logo" class="logo-image">
         <p>Catálogo Oficial Total • Precios Reales • Perú</p>
+    </div>
+    <div class="trust-bar">
+        <div class="trust-item"><i class="fas fa-bolt"></i> Entrega Rápida</div>
+        <div class="trust-item"><i class="fas fa-shield-halved"></i> Garantía Total</div>
+        <div class="trust-item"><i class="fas fa-headset"></i> Soporte 24/7</div>
+        <div class="trust-item"><i class="fas fa-qrcode"></i> Yape y Plin</div>
     </div>
 </header>
 
@@ -485,12 +618,14 @@
         <a href="#software" class="nav-pill">Software</a>
         <a href="#ia" class="nav-pill">IA</a>
         <a href="#juegos" class="nav-pill">Juegos</a>
+        <a href="#faq" class="nav-pill">Preguntas</a>
     </div>
 </nav>
 
 <div class="search-wrap">
-    <i class="fas fa-search"></i>
+    <i class="fas fa-search search-icon"></i>
     <input type="text" class="search-input" id="searchInput" placeholder="Buscar un producto... (ej: Netflix, Canva, VPN)">
+    <button class="clear-search" id="clearSearch" hidden aria-label="Limpiar búsqueda"><i class="fas fa-times-circle"></i></button>
 </div>
 
 <div class="container">
@@ -1138,12 +1273,32 @@
 
     <p class="no-results" id="noResults" hidden>No encontramos ningún producto con ese nombre. Prueba con otra palabra o escríbenos por WhatsApp.</p>
 
+    <section class="cat-section faq-section" id="faq">
+        <div class="section-title">
+            <i class="fas fa-circle-question"></i>
+            Preguntas Frecuentes
+        </div>
+        <details class="faq-item">
+            <summary>¿En cuánto tiempo entregan mi cuenta tras el pago?</summary>
+            <p>La entrega se realiza de forma inmediata (entre 2 a 10 minutos) directamente por WhatsApp una vez confirmado tu comprobante de Yape o Plin.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Cuál es la diferencia entre Perfil y Cuenta Completa?</summary>
+            <p>Un Perfil te brinda acceso privado con tu propio PIN para 1 dispositivo. La Cuenta Completa te entrega el correo y contraseña para usar todos los perfiles simultáneamente.</p>
+        </details>
+        <details class="faq-item">
+            <summary>¿Tienen garantía durante todo el tiempo contratado?</summary>
+            <p>Sí, todos nuestros planes cuentan con garantía total por el periodo adquirido (1, 3, 6 o 12 meses) y soporte técnico 24/7 ante cualquier inconveniente.</p>
+        </details>
+    </section>
+
 </div>
 
 <footer>
-    <div class="payment-pill">
-        <i class="fas fa-mobile-alt"></i>
-        Solo YAPE y PLIN
+    <div class="payment-badges">
+        <div class="payment-pill"><i class="fas fa-mobile-screen-button"></i> YAPE</div>
+        <div class="payment-pill"><i class="fas fa-bolt"></i> PLIN</div>
+        <div class="payment-pill"><i class="fas fa-shield-check"></i> Garantía 100%</div>
     </div>
     <p>© 2026 Jireh Streaming Perú • Soporte VIP 24/7</p>
 </footer>
@@ -1154,8 +1309,52 @@
 
 <script>
 (function () {
+    // 1. Asignación automática de íconos y colores por marca
+    var brandRules = [
+        { match: /combo|trio|trío|cuarteto|dúo|duo/i, icon: 'fas fa-fire', color: 'linear-gradient(135deg, #FF8C00, #FF1493)' },
+        { match: /netflix/i, icon: 'fas fa-film', color: '#E50914' },
+        { match: /disney/i, icon: 'fas fa-wand-magic-sparkles', color: '#0063E5' },
+        { match: /hbo/i, icon: 'fas fa-clapperboard', color: '#5822B4' },
+        { match: /prime|amazon/i, icon: 'fab fa-amazon', color: '#00A8E1' },
+        { match: /crunchyroll/i, icon: 'fas fa-dragon', color: '#F47521' },
+        { match: /youtube/i, icon: 'fab fa-youtube', color: '#FF0000' },
+        { match: /spotify/i, icon: 'fab fa-spotify', color: '#1DB954' },
+        { match: /apple/i, icon: 'fab fa-apple', color: '#333333' },
+        { match: /deezer|tidal|soundcloud/i, icon: 'fas fa-music', color: '#8B5CF6' },
+        { match: /canva|adobe|filmora|capcut/i, icon: 'fas fa-palette', color: '#00C4CC' },
+        { match: /win|office/i, icon: 'fab fa-microsoft', color: '#0078D4' },
+        { match: /vpn|eset|avast/i, icon: 'fas fa-user-shield', color: '#10B981' },
+        { match: /chatgpt|gemini|leonardo/i, icon: 'fas fa-brain', color: '#7C3AED' },
+        { match: /ps4|ps5|ps plus/i, icon: 'fab fa-playstation', color: '#00439C' },
+        { match: /xbox/i, icon: 'fab fa-xbox', color: '#107C10' },
+        { match: /free fire/i, icon: 'fas fa-gem', color: '#F59E0B' },
+        { match: /iptv|magis|dgo|movistar|flujo|oleada|tele|plex|jellyfin/i, icon: 'fas fa-tv', color: '#2563EB' }
+    ];
+
+    document.querySelectorAll('.card').forEach(function (card) {
+        var titleEl = card.querySelector('h3');
+        if (!titleEl) return;
+        var titleText = titleEl.textContent;
+        var chosen = { icon: 'fas fa-star', color: 'linear-gradient(135deg, #FF8C00, #FF1493)' };
+
+        for (var i = 0; i < brandRules.length; i++) {
+            if (brandRules[i].match.test(titleText)) {
+                chosen = brandRules[i];
+                break;
+            }
+        }
+
+        card.style.setProperty('--brand-color', chosen.color);
+        var iconBox = document.createElement('div');
+        iconBox.className = 'card-icon';
+        iconBox.innerHTML = '<i class="' + chosen.icon + '"></i>';
+        card.insertBefore(iconBox, titleEl);
+    });
+
+    // 2. Buscador con botón limpiar
     var searchInput = document.getElementById('searchInput');
-    var sections = Array.prototype.slice.call(document.querySelectorAll('.cat-section'));
+    var clearBtn = document.getElementById('clearSearch');
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.cat-section:not(.faq-section)'));
     var noResults = document.getElementById('noResults');
     var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-pill'));
 
@@ -1163,8 +1362,9 @@
         return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     }
 
-    searchInput.addEventListener('input', function () {
-        var q = normalize(this.value.trim());
+    function filterCards() {
+        var q = normalize(searchInput.value.trim());
+        clearBtn.hidden = q === '';
         var totalVisible = 0;
 
         sections.forEach(function (section) {
@@ -1181,8 +1381,37 @@
         });
 
         noResults.hidden = totalVisible !== 0;
+    }
+
+    searchInput.addEventListener('input', filterCards);
+    clearBtn.addEventListener('click', function () {
+        searchInput.value = '';
+        filterCards();
+        searchInput.focus();
     });
 
+    // 3. Modo Oscuro / Claro
+    var themeToggle = document.getElementById('themeToggle');
+    var savedTheme = localStorage.getItem('jireh-theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    themeToggle.addEventListener('click', function () {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('jireh-theme', 'light');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('jireh-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+    });
+
+    // 4. Observador de secciones para navegación activa
     if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
@@ -1195,7 +1424,7 @@
             });
         }, { rootMargin: '-96px 0px -70% 0px' });
 
-        sections.forEach(function (section) {
+        document.querySelectorAll('.cat-section').forEach(function (section) {
             observer.observe(section);
         });
     }
